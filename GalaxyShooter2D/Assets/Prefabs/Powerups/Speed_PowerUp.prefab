@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 302657124266281006}
   m_Layer: 0
   m_Name: Speed_PowerUp
-  m_TagString: SpeedPowerUp
+  m_TagString: Powerups
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -145,6 +145,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cba9a4f97c32be49bdfa3d646275bed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _PowerupSpeed: 3
+  _powerupID: 1
 --- !u!95 &302657124266281006
 Animator:
   serializedVersion: 3

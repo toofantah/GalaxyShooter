@@ -109,5 +109,17 @@ public class Player : MonoBehaviour
         _speed = 3.5f;
     }
 
+    public void ShieldPowerupActive()
+    {
+        _lives++;
+        StartCoroutine(ShieldPowerDownRoutine());
+    }
+
+    IEnumerator ShieldPowerDownRoutine()
+    {
+        yield return new WaitForSeconds(5.0f);
+        _lives--;
+    }
+
 
 }

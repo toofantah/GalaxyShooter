@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class Powerup : MonoBehaviour
 {
+    [SerializeField]
     private float _PowerupSpeed = 3;
+    [SerializeField]
+    private int _powerupID;
     void Start()
     {
         
@@ -23,14 +26,23 @@ public class Powerup : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         Player player = other.transform.GetComponent<Player>();
-        if(player != null && this.transform.tag == "TripplShotPowerUp")
+        if(player != null)
         {
-            player.TrippleShotPowerupActive();
-            Destroy(gameObject);
-        } else if (player != null && this.transform.tag == "SpeedPowerUp")
-        {
-            player.SpeedPowerUpActive();
-            Destroy(gameObject);
+            if(_powerupID == 0)
+            {
+                player.TrippleShotPowerupActive();
+                Destroy(gameObject);
+            }else if (_powerupID == 1)
+            {
+                player.SpeedPowerUpActive();
+                Destroy(gameObject);
+            }else if (_powerupID == 2)
+            {
+                player.ShieldPowerupActive();
+                Destroy(gameObject);
+            }
+            
+           
         } 
     }
 }
