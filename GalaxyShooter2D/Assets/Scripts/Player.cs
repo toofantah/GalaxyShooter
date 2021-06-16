@@ -5,15 +5,24 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField]
+    private int _lives = 3;
+    [SerializeField]
     private float _speed = 3.5f;
     [SerializeField]
     private GameObject _laserPrefab;
     [SerializeField]
     private float _fireRate = 0.5f;
     private float _nextFire = 0.0f;
+    private SpawnManager spawnManager;
     void Start()
     {
+        spawnManager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
         transform.position = new Vector3(0, 0, 0);
+        if(spawnManager == null)
+        {
+            Debug.Log("failed to access Spawn Manager");
+        }
+
     }
 
     void Update()
@@ -50,5 +59,16 @@ public class Player : MonoBehaviour
     {
         _nextFire = Time.time + _fireRate;
         Instantiate(_laserPrefab, new Vector3(transform.position.x, transform.position.y + 0.8f, 0), Quaternion.identity);
+    }
+
+    public void Damage()
+    {
+        _lives -= 1;
+
+        if(_lives == 0)
+        {
+            spawnManager.OnPlayerDeath();
+            Destroy(this.gameObject);
+        }
     }
 }
