@@ -154,6 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyPrefab: {fileID: 1955801520655820870, guid: 9612ab63fef2eba458eaa7b1b0bbd0b8, type: 3}
   _TrippleShotPrefab: {fileID: 7306780712516762521, guid: 8fc1e68eff8de184a97e090f87f7405e, type: 3}
+  _speedPowerupPrefab: {fileID: 7306780712516762521, guid: 1508ff144d11a104094bead0e158402e, type: 3}
   _enemayContainer: {fileID: 1625455941}
 --- !u!4 &34876772
 Transform:
