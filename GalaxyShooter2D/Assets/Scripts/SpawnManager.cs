@@ -46,7 +46,7 @@ public class SpawnManager : MonoBehaviour
             Vector3 posToSpawn;
             posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
             Instantiate(_TrippleShotPrefab, posToSpawn, Quaternion.identity);
-            yield return new WaitForSeconds(7.0f);
+            yield return new WaitForSeconds(Random.Range(3.0f, 7.0f));
         }
       
     }
