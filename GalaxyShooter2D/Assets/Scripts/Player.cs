@@ -83,6 +83,8 @@ public class Player : MonoBehaviour
         }
     }
 
+    
+
     public void TrippleShotPowerupActive()
     {
         _isTrippleShot = true;
@@ -94,4 +96,18 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(5.0f);
         _isTrippleShot = false;
     }
+
+    public void SpeedPowerUpActive()
+    {
+        _speed = 8;
+        StartCoroutine(SpeedPowerDownRoutine());
+    }
+
+    IEnumerator SpeedPowerDownRoutine()
+    {
+        yield return new WaitForSeconds(5.0f);
+        _speed = 3.5f;
+    }
+
+
 }

@@ -23,10 +23,14 @@ public class Powerup : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         Player player = other.transform.GetComponent<Player>();
-        if(player != null)
+        if(player != null && this.transform.tag == "TripplShotPowerUp")
         {
             player.TrippleShotPowerupActive();
             Destroy(gameObject);
-        }
+        } else if (player != null && this.transform.tag == "SpeedPowerUp")
+        {
+            player.SpeedPowerUpActive();
+            Destroy(gameObject);
+        } 
     }
 }
