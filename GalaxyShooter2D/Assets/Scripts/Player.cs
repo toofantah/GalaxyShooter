@@ -13,6 +13,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private GameObject _TripleLaserPrefab;
     [SerializeField]
+    private GameObject _ShieldVisualPrefab;
+    [SerializeField]
     private float _fireRate = 0.5f;
     private float _nextFire = 0.0f;
     [SerializeField]
@@ -20,6 +22,7 @@ public class Player : MonoBehaviour
     private SpawnManager spawnManager;
     private bool _isTrippleShot = false;
     private bool _isSheildActive = false;
+
 
     void Start()
     {
@@ -83,6 +86,7 @@ public class Player : MonoBehaviour
         } else
         {
             _isSheildActive = false;
+            _ShieldVisualPrefab.SetActive(false);
         }
        
         if(_lives < 1)
@@ -121,6 +125,7 @@ public class Player : MonoBehaviour
     public void ShieldPowerupActive()
     {
         _isSheildActive = true;
+        _ShieldVisualPrefab.SetActive(true);
         StartCoroutine(ShieldPowerDownRoutine());
     }
 
@@ -128,6 +133,7 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(5.0f);
         _isSheildActive = false;
+        _ShieldVisualPrefab.SetActive(false);
     }
 
 
