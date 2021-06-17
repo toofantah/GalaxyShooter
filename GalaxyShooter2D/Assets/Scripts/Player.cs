@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
     private float _SpeedMultiplier = 2.0f;
     private SpawnManager spawnManager;
     private bool _isTrippleShot = false;
+    private bool _isSheildActive = false;
 
     void Start()
     {
@@ -76,8 +77,14 @@ public class Player : MonoBehaviour
 
     public void Damage()
     {
-        _lives -= 1;
-
+        if (_isSheildActive == false)
+        {
+            _lives -= 1;
+        } else
+        {
+            _isSheildActive = false;
+        }
+       
         if(_lives < 1)
         {
             spawnManager.OnPlayerDeath();
@@ -113,14 +120,14 @@ public class Player : MonoBehaviour
 
     public void ShieldPowerupActive()
     {
-        _lives++;
+        _isSheildActive = true;
         StartCoroutine(ShieldPowerDownRoutine());
     }
 
     IEnumerator ShieldPowerDownRoutine()
     {
         yield return new WaitForSeconds(5.0f);
-        _lives--;
+        _isSheildActive = false;
     }
 
 
