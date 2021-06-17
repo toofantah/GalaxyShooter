@@ -7,6 +7,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private int _lives = 3;
     [SerializeField]
+    private int _score;
+    [SerializeField]
     private float _speed = 3.5f;
     [SerializeField]
     private GameObject _laserPrefab;
@@ -20,6 +22,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float _SpeedMultiplier = 2.0f;
     private SpawnManager spawnManager;
+    private UIManager _uIManager;
     private bool _isTrippleShot = false;
     private bool _isSheildActive = false;
 
@@ -27,10 +30,16 @@ public class Player : MonoBehaviour
     void Start()
     {
         spawnManager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
+        _uIManager = GameObject.Find("Canvas").GetComponent<UIManager>();
         transform.position = new Vector3(0, 0, 0);
         if(spawnManager == null)
         {
             Debug.Log("failed to access Spawn Manager");
+        }
+
+        if(_uIManager == null)
+        {
+            Debug.Log("UIManager is null");
         }
 
     }
@@ -134,6 +143,12 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(5.0f);
         _isSheildActive = false;
         _ShieldVisualPrefab.SetActive(false);
+    }
+
+    public void AddScore(int points)
+    {
+        _score += points;
+        _uIManager.UpdateScore(_score);
     }
 
 
