@@ -15,6 +15,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float _fireRate = 0.5f;
     private float _nextFire = 0.0f;
+    [SerializeField]
+    private float _SpeedMultiplier = 2.0f;
     private SpawnManager spawnManager;
     private bool _isTrippleShot = false;
 
@@ -99,7 +101,7 @@ public class Player : MonoBehaviour
 
     public void SpeedPowerUpActive()
     {
-        _speed = 8;
+        _speed = _speed * _SpeedMultiplier;
         StartCoroutine(SpeedPowerDownRoutine());
     }
 
