@@ -38,8 +38,9 @@ public class Enemy : MonoBehaviour
             if(_player != null)
             {
                 _player.Damage();
+                Destroy(this.gameObject);
             }
-            Destroy(this.gameObject);
+            
         }
         else if (other.transform.tag == "Laser")
         {

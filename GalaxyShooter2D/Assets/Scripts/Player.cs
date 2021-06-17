@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private GameObject _ShieldVisualPrefab;
     [SerializeField]
-    private float _fireRate = 0.5f;
+    private float _fireRate = 0.2f;
     private float _nextFire = 0.0f;
     [SerializeField]
     private float _SpeedMultiplier = 2.0f;
@@ -29,8 +29,10 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        
         spawnManager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
         _uIManager = GameObject.Find("Canvas").GetComponent<UIManager>();
+
         transform.position = new Vector3(0, 0, 0);
         if(spawnManager == null)
         {
@@ -91,17 +93,20 @@ public class Player : MonoBehaviour
     {
         if (_isSheildActive == false)
         {
-            _lives -= 1;
+            _lives --;
+            
         } else
         {
             _isSheildActive = false;
             _ShieldVisualPrefab.SetActive(false);
         }
-       
-        if(_lives < 1)
+        _uIManager.UpdateSprites(_lives);
+        if (_lives < 1)
         {
             spawnManager.OnPlayerDeath();
+            _uIManager.GameOver();
             Destroy(this.gameObject);
+
         }
     }
 
