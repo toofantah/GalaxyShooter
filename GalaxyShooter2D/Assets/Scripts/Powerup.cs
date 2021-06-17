@@ -25,24 +25,36 @@ public class Powerup : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Player player = other.transform.GetComponent<Player>();
-        if(player != null)
+        if(other.tag == "Player")
         {
-            if(_powerupID == 0)
+            Player player = other.transform.GetComponent<Player>();
+            if (player != null)
             {
-                player.TrippleShotPowerupActive();
-                Destroy(gameObject);
-            }else if (_powerupID == 1)
-            {
-                player.SpeedPowerUpActive();
-                Destroy(gameObject);
-            }else if (_powerupID == 2)
-            {
-                player.ShieldPowerupActive();
-                Destroy(gameObject);
+
+                switch (_powerupID)
+                {
+                    case 0:
+                        player.TrippleShotPowerupActive();
+                        Destroy(gameObject);
+                        break;
+                    case 1:
+                        player.SpeedPowerUpActive();
+                        Destroy(gameObject);
+                        break;
+                    case 2:
+                        player.ShieldPowerupActive();
+                        Destroy(gameObject);
+                        break;
+                    default:
+                        Debug.Log("No cases to pursue");
+                        break;
+
+
+                }
+
+
             }
-            
-           
-        } 
+        }
+      
     }
 }
