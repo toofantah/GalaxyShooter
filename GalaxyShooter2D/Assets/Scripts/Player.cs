@@ -78,7 +78,7 @@ public class Player : MonoBehaviour
     {
         _lives -= 1;
 
-        if(_lives == 0)
+        if(_lives < 1)
         {
             spawnManager.OnPlayerDeath();
             Destroy(this.gameObject);
@@ -108,7 +108,7 @@ public class Player : MonoBehaviour
     IEnumerator SpeedPowerDownRoutine()
     {
         yield return new WaitForSeconds(5.0f);
-        _speed = 3.5f;
+        _speed /= _SpeedMultiplier;
     }
 
     public void ShieldPowerupActive()
